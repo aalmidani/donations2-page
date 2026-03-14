@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="ar">
+
 <head>
+
 <meta charset="UTF-8">
-<title>التبرعات</title>
+
+<title>جدول التبرعات</title>
 
 <style>
 
@@ -10,131 +13,36 @@ body{
 font-family:Arial;
 direction:rtl;
 padding:40px;
-background:#f7f7f7
+background:#f5f5f5
 }
 
-h1{
-text-align:center
+.container{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 4px 20px rgba(0,0,0,0.1)
 }
 
-.progress-container{
+iframe{
 width:100%;
-height:30px;
-border-radius:20px;
-background:#ddd;
-overflow:hidden;
-margin-bottom:10px
-}
-
-.progress-bar{
-height:100%;
-background:#28a745;
-width:0%;
-transition:0.5s
-}
-
-.total{
-font-size:22px;
-font-weight:bold;
-margin-bottom:20px
-}
-
-table{
-width:100%;
-border-collapse:collapse;
-background:white
-}
-
-th,td{
-border:1px solid #ddd;
-padding:10px;
-text-align:center
-}
-
-th{
-background:#f2f2f2
+height:600px;
+border:none
 }
 
 </style>
+
 </head>
 
 <body>
 
-<h1>حملة التبرعات</h1>
+<div class="container">
 
-<div class="progress-container">
-<div id="progressBar" class="progress-bar"></div>
+<h2>جدول التبرعات</h2>
+
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRQBH8iAEgXSTQ7Dcj67tg20bR4jOSmiUFdcIv1WFxYwZ8YiBa-dJfMGc8Aay-DJO0pEr-sQON28cwQ/pubhtml"></iframe>
+
 </div>
-
-<div class="total">
-إجمالي التبرعات: <span id="totalAmount">0</span> €
-</div>
-
-<table>
-<thead>
-<tr>
-<th>التاريخ</th>
-<th>الاسم</th>
-<th>المبلغ</th>
-<th>ملاحظة</th>
-</tr>
-</thead>
-
-<tbody id="donationsTable"></tbody>
-</table>
-
-<script>
-
-const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRQBH8iAEgXSTQ7Dcj67tg20bR4jOSmiUFdcIv1WFxYwZ8YiBa-dJfMGc8Aay-DJO0pEr-sQON28cwQ/pub?output=csv";
-
-const goal = 5000; // هدف التبرعات
-
-fetch(csvUrl)
-.then(response => response.text())
-.then(data => {
-
-const rows = data.split("\n").slice(1);
-
-let total = 0;
-
-rows.forEach(row => {
-
-const cols = row.split(",");
-
-if(cols.length >= 3){
-
-const date = cols[0];
-const name = cols[1];
-const amount = parseFloat(cols[2]);
-const note = cols[3] || "";
-
-if(!isNaN(amount)){
-
-total += amount;
-
-document.getElementById("donationsTable").innerHTML +=
-`<tr>
-<td>${date}</td>
-<td>${name}</td>
-<td>${amount} €</td>
-<td>${note}</td>
-</tr>`;
-
-}
-
-}
-
-});
-
-document.getElementById("totalAmount").innerText = total;
-
-const percent = (total/goal)*100;
-
-document.getElementById("progressBar").style.width = percent + "%";
-
-});
-
-</script>
 
 </body>
+
 </html>
