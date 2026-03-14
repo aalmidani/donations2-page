@@ -12,15 +12,38 @@
 body{
 font-family:Arial;
 direction:rtl;
-padding:40px;
-background:#f5f5f5
+background:#f4f6f8;
+padding:40px
 }
 
 .container{
 background:white;
-padding:20px;
+padding:25px;
 border-radius:10px;
 box-shadow:0 4px 20px rgba(0,0,0,0.1)
+}
+
+h2{
+margin-bottom:20px
+}
+
+.buttons{
+margin-bottom:20px
+}
+
+button{
+padding:10px 18px;
+margin-left:10px;
+border:none;
+border-radius:6px;
+background:#2d89ef;
+color:white;
+font-size:15px;
+cursor:pointer
+}
+
+button:hover{
+background:#1b5fbf
 }
 
 iframe{
@@ -39,9 +62,35 @@ border:none
 
 <h2>جدول التبرعات</h2>
 
+<div class="buttons">
+
+<a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRQBH8iAEgXSTQ7Dcj67tg20bR4jOSmiUFdcIv1WFxYwZ8YiBa-dJfMGc8Aay-DJO0pEr-sQON28cwQ/pub?output=xlsx">
+
+<button>تحميل Excel</button>
+
+</a>
+
+<a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRQBH8iAEgXSTQ7Dcj67tg20bR4jOSmiUFdcIv1WFxYwZ8YiBa-dJfMGc8Aay-DJO0pEr-sQON28cwQ/pub?output=pdf">
+
+<button>تحميل PDF</button>
+
+</a>
+
+<button onclick="printPage()">طباعة الجدول</button>
+
+</div>
+
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRQBH8iAEgXSTQ7Dcj67tg20bR4jOSmiUFdcIv1WFxYwZ8YiBa-dJfMGc8Aay-DJO0pEr-sQON28cwQ/pubhtml"></iframe>
 
 </div>
+
+<script>
+
+function printPage(){
+window.print();
+}
+
+</script>
 
 </body>
 
